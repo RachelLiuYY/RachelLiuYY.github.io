@@ -996,3 +996,6 @@ vendors:
 css: css
 js: js
 images: images
+
+post_end_tag:
+  enabled: true
