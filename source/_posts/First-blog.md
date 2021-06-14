@@ -72,7 +72,7 @@ deploy:
 
 ### 写文章与发布
 
-需要暗转过一个扩展：
+需要安装一个扩展：
 ~~~
 npm i hexo-deployer-git
 ~~~
