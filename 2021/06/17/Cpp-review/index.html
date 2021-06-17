@@ -20,30 +20,33 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="这是一只杨">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sheeep Blog">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="零碎知识点1. new、delete、malloc、free:smile:  new 和 delete对应，是C++语言的标准库函数 malloc和free对应，是C++的运算符 它们都可用于申请动态内存和释放内存，区别在对非内部数据类型的对象而言，malloc和free无法满足动态对象的要求(因为对象在创建的同时要自动执行构造函数，对象在消亡之前要自动执行析构函数)  2. delete和del">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cpp review">
+<meta property="og:url" content="http://example.com/2021/06/17/Cpp-review/index.html">
 <meta property="og:site_name" content="Sheeep Blog">
-<meta property="og:description" content="这是一只杨">
+<meta property="og:description" content="零碎知识点1. new、delete、malloc、free:smile:  new 和 delete对应，是C++语言的标准库函数 malloc和free对应，是C++的运算符 它们都可用于申请动态内存和释放内存，区别在对非内部数据类型的对象而言，malloc和free无法满足动态对象的要求(因为对象在创建的同时要自动执行构造函数，对象在消亡之前要自动执行析构函数)  2. delete和del">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-17T03:17:29.000Z">
+<meta property="article:modified_time" content="2021-06-17T09:06:32.140Z">
 <meta property="article:author" content="Sheeeep Liu">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/06/17/Cpp-review/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Sheeep Blog</title>
+  <title>Cpp review | Sheeep Blog</title>
   
 
 
@@ -157,9 +160,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -175,10 +179,9 @@
       <meta itemprop="name" content="Sheeep Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/17/Cpp-review/" class="post-title-link" itemprop="url">Cpp review</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Cpp review
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -202,7 +205,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="零碎知识点"><a href="#零碎知识点" class="headerlink" title="零碎知识点"></a>零碎知识点</h2><h3 id="1-new、delete、malloc、free"><a href="#1-new、delete、malloc、free" class="headerlink" title="1. new、delete、malloc、free"></a>1. new、delete、malloc、free</h3><p>:smile:</p>
+        <h2 id="零碎知识点"><a href="#零碎知识点" class="headerlink" title="零碎知识点"></a>零碎知识点</h2><h3 id="1-new、delete、malloc、free"><a href="#1-new、delete、malloc、free" class="headerlink" title="1. new、delete、malloc、free"></a>1. new、delete、malloc、free</h3><p>:smile:</p>
 <blockquote>
 <p>new 和 delete对应，是C++语言的标准库函数</p>
 <p>malloc和free对应，是C++的运算符</p>
@@ -304,298 +307,38 @@
 <p>3） 从堆上分配，亦称动态内存分配。程序在运行的时候用malloc 或new申请任意多少的内存，程序员自己负责在何时用free或delete释放内存。动态内存的生存期由程序员决定，使用非常灵活，但问题也最多。</p>
 <p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72485165">https://zhuanlan.zhihu.com/p/72485165</a></p>
 
-      
     </div>
 
     
     
     
     <div>
+       
+        <div> <div style="text-align:center;color:#bfbfbf;font-size:16px;"> <span>-------- 本文结束 </span> <i class="fa fa-paw"></i> <span> 感谢阅读 --------</span> </div> </div> 
       
     </div>
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"><i class="fa fa-tag"></i> C++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/16/CrowdSimulationReview/" rel="prev" title="CrowdSimulationReview">
+      <i class="fa fa-chevron-left"></i> CrowdSimulationReview
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/16/CrowdSimulationReview/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sheeeep Liu">
-      <meta itemprop="description" content="这是一只杨">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sheeep Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/16/CrowdSimulationReview/" class="post-title-link" itemprop="url">CrowdSimulationReview</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-06-16 13:03:06 / 修改时间：14:58:15" itemprop="dateCreated datePublished" datetime="2021-06-16T13:03:06+08:00">2021-06-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这是对于论文《A review on crowd simulation and modeling》的阅读笔记</p>
-<table>
-<thead>
-<tr>
-<th>常用词汇</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>lane formation</td>
-<td>车道形成</td>
-</tr>
-<tr>
-<td>vortex formation</td>
-<td>涡流形成</td>
-</tr>
-<tr>
-<td>congestion</td>
-<td>拥塞</td>
-</tr>
-<tr>
-<td>trajectory</td>
-<td>轨迹、弹道</td>
-</tr>
-</tbody></table>
-<p>人群模拟的主要方法可以分为：</p>
-<ol>
-<li>微观模型 Microscopic</li>
-<li>宏观模型 Macroscopic</li>
-<li>细观模型 Mesoscopic</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/16/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sheeeep Liu">
-      <meta itemprop="description" content="这是一只杨">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sheeep Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/16/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-16 13:00:47" itemprop="dateCreated datePublished" datetime="2021-06-16T13:00:47+08:00">2021-06-16</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/11/First-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Sheeeep Liu">
-      <meta itemprop="description" content="这是一只杨">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sheeep Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/11/First-blog/" class="post-title-link" itemprop="url">First blog</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-11 14:33:44" itemprop="dateCreated datePublished" datetime="2021-06-11T14:33:44+08:00">2021-06-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-16 13:00:47" itemprop="dateModified" datetime="2021-06-16T13:00:47+08:00">2021-06-16</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="使用的工具"><a href="#使用的工具" class="headerlink" title="使用的工具"></a>使用的工具</h2><blockquote>
-<p>Hexo + Github</p>
-</blockquote>
-<p>需要下载：</p>
-<ol>
-<li>npm</li>
-<li>Git</li>
-</ol>
-<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>首先要有一个GitHub账号，建立一个Repository，名称为</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yourname.github.<span class="built_in">io</span></span><br></pre></td></tr></table></figure>
-
-<p>这样博客的网站就是<a target="_blank" rel="noopener" href="http://yourname.github.io/">http://YourName.github.io</a></p>
-<p>之后在电脑中创建一个存放博客文件的文件夹，在该目录下面打开Git Bash,输入<code>npm i hexo-cli g</code> 安装hexo</p>
-<p>验证：<code>hexo -v</code> </p>
-<p>初始化： <code>hexo init</code></p>
-<p><code>npm install</code> 安装必备的组件</p>
-<p><code>hexo g</code> 生成静态网页</p>
-<p><code>hexo s</code> 打开本地服务器</p>
-<p>在浏览器中输入localhost:4000，即可预览效果，注意端口不要被占用了</p>
-<h3 id="连接Github与Hexo"><a href="#连接Github与Hexo" class="headerlink" title="连接Github与Hexo"></a>连接Github与Hexo</h3><p>在Git Bash中输入</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> user<span class="variable">.name</span> <span class="string">&quot;YourName&quot;</span></span><br><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> user<span class="variable">.email</span> <span class="string">&quot;YourEmail&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>配置SSH Key以便不用输入用户名和密码</p>
-<p>生成SSH Key密钥：</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;YourEmail&quot;</span></span><br><span class="line">cat ~<span class="regexp">/.ssh/i</span>d_rsa.pub</span><br></pre></td></tr></table></figure>
-
-<p>能够查看到已经生成的SSH </p>
-<p>在Github中Settings中点击SSH and GPG Keys设置，将刚才输出的内容复制在Key中</p>
-<p>输入<code>ssh -T git@github.com</code>，如果成功出现用户名，那就成功了。</p>
-<h3 id="修改Hexo配置文件"><a href="#修改Hexo配置文件" class="headerlink" title="修改Hexo配置文件"></a>修改Hexo配置文件</h3><p>Hexo有很多主题可以选择，可以在_config.yml文件中修改Theme</p>
-<p>为了连接到Github需要修改deploy部分：</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repository:</span> git@github.com:YourName/YourName.github.io.git</span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
-
-<h3 id="写文章与发布"><a href="#写文章与发布" class="headerlink" title="写文章与发布"></a>写文章与发布</h3><p>需要安装一个扩展：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
-<p>新建一个.md文章</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="type">post</span> <span class="string">&quot;article title&quot;</span></span><br></pre></td></tr></table></figure>
-<p>文章目录存放在<code>source\_posts</code>中</p>
-<p>文章写完之后</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g <span class="meta">&amp;&amp; hexo d</span></span><br></pre></td></tr></table></figure>
-<p>进行网页的生成和提交</p>
-<h2 id="常用Hexo命令"><a href="#常用Hexo命令" class="headerlink" title="常用Hexo命令"></a>常用Hexo命令</h2><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="string">&quot;postName&quot;</span> <span class="meta">#新建文章</span></span><br><span class="line">hexo <span class="keyword">new</span> page <span class="string">&quot;pageName&quot;</span> <span class="meta">#新建页面</span></span><br><span class="line">hexo generate <span class="meta">#生成静态页面至public目录</span></span><br><span class="line">hexo <span class="keyword">server</span> <span class="meta">#开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭server）</span></span><br><span class="line">hexo deploy <span class="meta">#部署到GitHub</span></span><br><span class="line">hexo help  <span class="meta"># 查看帮助</span></span><br><span class="line">hexo version  <span class="meta">#查看Hexo的版本</span></span><br><span class="line"></span><br><span class="line">hexo n == hexo <span class="keyword">new</span></span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo s == hexo <span class="keyword">server</span></span><br><span class="line">hexo d == hexo deploy</span><br><span class="line"></span><br><span class="line">hexo s -g <span class="meta">#生成并本地预览</span></span><br><span class="line">hexo d -g <span class="meta">#生成并上传</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-    <div>
-      
-    </div>
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -648,6 +391,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%B6%E7%A2%8E%E7%9F%A5%E8%AF%86%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">零碎知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-new%E3%80%81delete%E3%80%81malloc%E3%80%81free"><span class="nav-number">1.1.</span> <span class="nav-text">1. new、delete、malloc、free</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-delete%E5%92%8Cdelete-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">2. delete和delete[] 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-C-%E6%9C%89%E5%93%AA%E4%BA%9B%E6%80%A7%E8%B4%A8"><span class="nav-number">1.3.</span> <span class="nav-text">3. C++有哪些性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%A4%9A%E6%80%81%EF%BC%8C%E8%99%9A%E5%87%BD%E6%95%B0%EF%BC%8C%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">4. 多态，虚函数，纯虚函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.1.</span> <span class="nav-text">纯虚函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="nav-number">1.4.2.</span> <span class="nav-text">抽象类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E6%80%81%E6%80%A7"><span class="nav-number">1.4.3.</span> <span class="nav-text">多态性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E5%BC%95%E7%94%A8"><span class="nav-number">1.5.</span> <span class="nav-text">5. 引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E5%BC%95%E7%94%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text">常引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E8%81%94%E5%90%88"><span class="nav-number">1.6.</span> <span class="nav-text">6. 联合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-%E8%81%9A%E5%90%88%E5%92%8C%E7%BB%84%E5%90%88-Aggregation-amp-Composition"><span class="nav-number">1.7.</span> <span class="nav-text">7. 聚合和组合 Aggregation &amp; Composition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-%E9%87%8D%E8%BD%BD-overload"><span class="nav-number">1.8.</span> <span class="nav-text">8. 重载(overload)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-C-%E6%98%AF%E7%B1%BB%E5%9E%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%90%97%EF%BC%9F"><span class="nav-number">1.9.</span> <span class="nav-text">9. C++是类型安全的吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-main%E5%87%BD%E6%95%B0%E6%89%A7%E8%A1%8C%E4%B9%8B%E5%89%8D%E4%BC%9A%E6%89%A7%E8%A1%8C%E4%BB%80%E4%B9%88%E4%BB%A3%E7%A0%81"><span class="nav-number">1.10.</span> <span class="nav-text">10. main函数执行之前会执行什么代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E5%BD%93%E4%B8%80%E4%B8%AA%E7%B1%BBA%E4%B8%AD%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E4%B8%8E%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0-%E8%BF%99%E6%97%B6sizeof-A-%E7%9A%84%E5%80%BC%E6%98%AF%E5%A4%9A%E5%B0%91%EF%BC%9F"><span class="nav-number">1.11.</span> <span class="nav-text">11. 当一个类A中没有任何成员变量与成员函数,这时sizeof(A)的值是多少？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E6%AF%94%E8%BE%83C-%E4%B8%AD%E7%9A%844%E7%A7%8D%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">1.12.</span> <span class="nav-text">12. 比较C++中的4种类型转换方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E6%96%B9%E5%BC%8F%E4%BB%A5%E5%8F%8A%E5%8C%BA%E5%88%AB"><span class="nav-number">1.13.</span> <span class="nav-text">13. 内存分配方式以及区别</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
