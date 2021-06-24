@@ -186,10 +186,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-06-17 11:17:29 / 修改时间：17:06:32" itemprop="dateCreated datePublished" datetime="2021-06-17T11:17:29+08:00">2021-06-17</time>
+              <time title="创建时间：2021-06-17 11:17:29" itemprop="dateCreated datePublished" datetime="2021-06-17T11:17:29+08:00">2021-06-17</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-24 11:04:37" itemprop="dateModified" datetime="2021-06-24T11:04:37+08:00">2021-06-24</time>
+              </span>
 
           
 
@@ -212,98 +218,14 @@
 <p>delete只会调用一次析构函数</p>
 <p>但是delete[]会调用每一个成员的析构函数</p>
 </blockquote>
-<h3 id="3-C-有哪些性质"><a href="#3-C-有哪些性质" class="headerlink" title="3. C++有哪些性质"></a>3. C++有哪些性质</h3><blockquote>
-<p>封装、继承和多态</p>
-<p>封装：把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏。（private,protected,public）</p>
-<p>继承： 继承允许我们依据另一个类来定义一个类。有三种继承方式，决定了派生类对于基类的访问权限。:smile: 接口继承，就是派生类只继承函数的接口，也就是声明；而实现继承，就是派生类同时继承函数的接口和实现。</p>
-<p>多态：函数的多种不同实现方式，C++ 多态意味着调用成员函数时，会根据调用函数的对象的类型来执行不同的函数。详细见（4）</p>
-</blockquote>
-<h3 id="4-多态，虚函数，纯虚函数"><a href="#4-多态，虚函数，纯虚函数" class="headerlink" title="4. 多态，虚函数，纯虚函数"></a>4. 多态，虚函数，纯虚函数</h3><blockquote>
-<p>虚函数 <code>virtual</code> 与基类虚函数有相同的参数个数</p>
-<p>参数的类型与基类相同</p>
-<p>返回值与基类相同，或者都返回指针或引用，并且派生类虚函数所返回的指针或引用的基类型是基类中被替换的虚函数所返回的指针或引用的基类型的子类型。</p>
-</blockquote>
-<h4 id="纯虚函数"><a href="#纯虚函数" class="headerlink" title="纯虚函数"></a><strong>纯虚函数</strong></h4><p>是一种特殊的虚函数，在基类中声明但是在基类中没有定义，要求任何派生类定义具体的实现方法。</p>
-<figure class="highlight bnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">class <span class="attribute">&lt;类名&gt;</span></span><br><span class="line">&#123;</span><br><span class="line">   virtual <span class="attribute">&lt;类型&gt;</span> <span class="attribute">&lt;函数名&gt;</span> (<span class="attribute">&lt;参数表&gt;</span>) = 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a><strong>抽象类</strong></h4><p>包含纯虚函数的类称为抽象类。</p>
-<p>由于抽象类包含了没有定义的纯虚函数，所以不能定义抽象类的对象。抽象类是一种特殊的类，它是为了抽象和设计的目的而建立的，它处于继承层次结构的较上层。抽象类是不能定义对象的，在实际中为了强调一个类是抽象类，可将该类的构造函数说明为保护的访问控制权限。</p>
-<h4 id="多态性"><a href="#多态性" class="headerlink" title="多态性"></a><strong>多态性</strong></h4><p>同一操作作用于不同的对象，可以有不同的解释，产生不同的执行结果，这就是多态性。</p>
-<p>编译时的多态性：编译时的多态性是通过重载来实现的。（静态多态）</p>
-<p>运行时的多态性：运行时的多态性就是指直到系统运行时，才根据实际情况决定实现何种操作，例如虚函数。（动态多态）</p>
-<p>多态的作用：</p>
-<p>1.隐藏实现细节，使得代码能够模块化，并且能够扩展代码模块，实现代码重用</p>
-<p>2.接口重用：为了类在继承和派生的时候，保证使用家族中任一类的实例的某一属性时的正确调用</p>
-<h3 id="5-引用"><a href="#5-引用" class="headerlink" title="5. 引用"></a>5. 引用</h3><blockquote>
-<p>申明引用的时候记得一定要初始化。</p>
-<p>引用不是一种数据类型，本身不占存储单元</p>
-</blockquote>
-<p>引用作为函数参数的特点：</p>
-<ol>
-<li>传递引用给函数和指针是一样的</li>
-<li>使用引用传递函数的参数，在内存中没有产生实际参数的副本，传递的效率较高</li>
-<li>使用指针作为函数的参数，需要分配存储单元，并且调用时必须使用变量的地址作为实参；引用相比指针更清晰，可读性好。</li>
-</ol>
-<h4 id="常引用"><a href="#常引用" class="headerlink" title="常引用"></a><strong>常引用</strong></h4><p>常引用声明方式：<code>const 类型标识符 &amp;引用名=目标变量名；</code></p>
-<p>可以保护传递给函数的数据不在函数中被改变</p>
-<p>引用作为函数返回值：</p>
-<ol>
-<li>优点：在内存中不产生被返回值的副本</li>
-<li>需要遵守的规则：<ol>
-<li>不能返回局部变量</li>
-<li>不能返回函数内部new分配的内存引用</li>
-<li>可以返回类成员的引用，最好是const。</li>
-<li>赋值操作符(赋值操作符的返回值必须是一个左值)、流操作符重载返回值申明为“引用”</li>
-<li>在另外的一些操作符中，不能返回引用：+-*/ 四则运算符</li>
-</ol>
-</li>
-</ol>
-<blockquote>
-<p>引用也可以产生多态效果，这意味着，一个基类的引用可以指向它的派生类实例。</p>
-<p>除了<code>&gt;&gt;</code> <code>&lt;&lt;</code> <code>=</code>之外的情况，都推荐使用引用。</p>
-</blockquote>
-<h3 id="6-联合"><a href="#6-联合" class="headerlink" title="6. 联合"></a>6. 联合</h3><p>在“联合”中，各成员共享一段内存空间，一个联合变量的长度等于各成员中最长的长度。在同一时刻，联合中只存放了一个成员，所有成员公用一个地址空间。</p>
-<p>例如：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">union</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">       <span class="keyword">int</span> i;</span><br><span class="line">       <span class="keyword">char</span> x[<span class="number">2</span>];</span><br><span class="line">&#125;a;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">       a.x[<span class="number">0</span>] = <span class="number">10</span>;</span><br><span class="line">       a.x[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">       <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a.i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">x[<span class="number">1</span>]=<span class="number">1</span>  x[<span class="number">0</span>]=<span class="number">10</span></span><br><span class="line"><span class="number">0000</span>   <span class="number">0000</span>   <span class="number">0001</span>   <span class="number">1010</span></span><br><span class="line"></span><br><span class="line">a.i = <span class="number">11010</span>（<span class="number">2</span>） =  <span class="number">266</span>（<span class="number">10</span>）</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-聚合和组合-Aggregation-amp-Composition"><a href="#7-聚合和组合-Aggregation-amp-Composition" class="headerlink" title="7. 聚合和组合 Aggregation &amp; Composition"></a>7. 聚合和组合 Aggregation &amp; Composition</h3><p>当一个类的对象拥有另一个类的对象时，就会发生类聚合。聚合表示has-a的关系，是一种相对松散的关系，聚合类不需要对被聚合类负责，用空的菱形表示聚合关系，从实现的角度讲，聚合可以表示为:</p>
-<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class A <span class="meta">&#123;...&#125;</span></span><br><span class="line">class B &#123;A* a; ...&#125;</span><br></pre></td></tr></table></figure>
-<p>组合表示contains-a的关系，关联性强于聚合；组合类与被组合类有相同的生命周期，组合类要对被组合类负责，采用实心的菱形表示组合关系：实现的形式是:</p>
-<figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class A<span class="meta">&#123;...&#125;</span></span><br><span class="line">class B&#123;A a; ...&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="8-重载-overload"><a href="#8-重载-overload" class="headerlink" title="8. 重载(overload)"></a>8. 重载(overload)</h3><blockquote>
-<p>是指允许存在多个同名函数，而这些函数的参数表不同（或许参数个数不同，或许参数类型不同，或许两者都不同）。</p>
-</blockquote>
-<h3 id="9-C-是类型安全的吗？"><a href="#9-C-是类型安全的吗？" class="headerlink" title="9. C++是类型安全的吗？"></a>9. C++是类型安全的吗？</h3><blockquote>
-<p>不是，两个不同类型的指针可以强制转换。</p>
-<p>C# 是类型安全的。</p>
-</blockquote>
-<h3 id="10-main函数执行之前会执行什么代码"><a href="#10-main函数执行之前会执行什么代码" class="headerlink" title="10. main函数执行之前会执行什么代码"></a>10. main函数执行之前会执行什么代码</h3><blockquote>
-<p>全局对象的构造函数</p>
-</blockquote>
-<h3 id="11-当一个类A中没有任何成员变量与成员函数-这时sizeof-A-的值是多少？"><a href="#11-当一个类A中没有任何成员变量与成员函数-这时sizeof-A-的值是多少？" class="headerlink" title="11. 当一个类A中没有任何成员变量与成员函数,这时sizeof(A)的值是多少？"></a>11. 当一个类A中没有任何成员变量与成员函数,这时sizeof(A)的值是多少？</h3><blockquote>
-<p>空类大小等于1，是因为编译器为了区分不同的类，在类中加的一个char型。</p>
-</blockquote>
-<h3 id="12-比较C-中的4种类型转换方式？"><a href="#12-比较C-中的4种类型转换方式？" class="headerlink" title="12. 比较C++中的4种类型转换方式？"></a>12. 比较C++中的4种类型转换方式？</h3><ul>
-<li><p><input disabled="" type="checkbox">  static_cast</p>
-<p>static_cast能够完成指向相关类的指针上的转换。upcast和downcast都能够支持，但不同的是，并不会有运行时的检查来确保转换到目标类型上的指针所指向的对象有效且完整。因此，这就完全依赖程序员来确保转换的安全性。但反过来说，这也不会带来额外检查的开销。</p>
-</li>
-<li><p><input disabled="" type="checkbox">  dynamic_cast</p>
-<p>dynamic_cast 只能用在指向类的指针或者引用上，允许upcast（从派生类向基类的转换）。在一颗类继承树上转换时,将利用 RTTI(Run-Time Type Identification) 在运行时检查，我们一般用于 downcast</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span>&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A &#123;&#125;;</span><br><span class="line"></span><br><span class="line">A* a = <span class="keyword">new</span> <span class="built_in">B</span>();</span><br><span class="line">B* b;</span><br><span class="line">b = <span class="keyword">dynamic_cast</span>&lt;B*&gt;(a);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p><input disabled="" type="checkbox">  reinterpret_cast</p>
-<p>reinterpret_cast能够完成任意指针类型向任意指针类型的转换，即使它们毫无关联。该转换的操作结果是出现一份完全相同的二进制复制品，既不会有指向内容的检查，也不会有指针本身类型的检查。</p>
-<p>:scream: 有点危险 </p>
-</li>
-<li><p><input disabled="" type="checkbox">  const_cast</p>
-<p>const_cast可以用来设置或者移除指针所指向对象的const。</p>
-<p>:open_mouth: 比较危险</p>
-</li>
-</ul>
-<h3 id="13-内存分配方式以及区别"><a href="#13-内存分配方式以及区别" class="headerlink" title="13. 内存分配方式以及区别"></a>13. 内存分配方式以及区别</h3><p>1） 从静态存储区域分配。内存在程序编译的时候就已经分配好，这块内存在程序的整个运行期间都存在。例如全局变量，static变量。</p>
-<p>2） 在栈上创建。在执行函数时，函数内局部变量的存储单元都可以在栈上创建，函数执行结束时这些存储单元自动被释放。栈内存分配运算内置于处理器的指令集。</p>
-<p>3） 从堆上分配，亦称动态内存分配。程序在运行的时候用malloc 或new申请任意多少的内存，程序员自己负责在何时用free或delete释放内存。动态内存的生存期由程序员决定，使用非常灵活，但问题也最多。</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/72485165">https://zhuanlan.zhihu.com/p/72485165</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/17/Cpp-review/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -521,7 +443,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-16 13:00:47" itemprop="dateModified" datetime="2021-06-16T13:00:47+08:00">2021-06-16</time>
+                <time title="修改时间：2021-06-24 10:53:37" itemprop="dateModified" datetime="2021-06-24T10:53:37+08:00">2021-06-24</time>
               </span>
 
           
@@ -547,37 +469,14 @@
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yourname.github.<span class="built_in">io</span></span><br></pre></td></tr></table></figure>
 
 <p>这样博客的网站就是<a target="_blank" rel="noopener" href="http://yourname.github.io/">http://YourName.github.io</a></p>
-<p>之后在电脑中创建一个存放博客文件的文件夹，在该目录下面打开Git Bash,输入<code>npm i hexo-cli g</code> 安装hexo</p>
-<p>验证：<code>hexo -v</code> </p>
-<p>初始化： <code>hexo init</code></p>
-<p><code>npm install</code> 安装必备的组件</p>
-<p><code>hexo g</code> 生成静态网页</p>
-<p><code>hexo s</code> 打开本地服务器</p>
-<p>在浏览器中输入localhost:4000，即可预览效果，注意端口不要被占用了</p>
-<h3 id="连接Github与Hexo"><a href="#连接Github与Hexo" class="headerlink" title="连接Github与Hexo"></a>连接Github与Hexo</h3><p>在Git Bash中输入</p>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> user<span class="variable">.name</span> <span class="string">&quot;YourName&quot;</span></span><br><span class="line">git <span class="keyword">config</span> --<span class="keyword">global</span> user<span class="variable">.email</span> <span class="string">&quot;YourEmail&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>配置SSH Key以便不用输入用户名和密码</p>
-<p>生成SSH Key密钥：</p>
-<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;YourEmail&quot;</span></span><br><span class="line">cat ~<span class="regexp">/.ssh/i</span>d_rsa.pub</span><br></pre></td></tr></table></figure>
-
-<p>能够查看到已经生成的SSH </p>
-<p>在Github中Settings中点击SSH and GPG Keys设置，将刚才输出的内容复制在Key中</p>
-<p>输入<code>ssh -T git@github.com</code>，如果成功出现用户名，那就成功了。</p>
-<h3 id="修改Hexo配置文件"><a href="#修改Hexo配置文件" class="headerlink" title="修改Hexo配置文件"></a>修改Hexo配置文件</h3><p>Hexo有很多主题可以选择，可以在_config.yml文件中修改Theme</p>
-<p>为了连接到Github需要修改deploy部分：</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repository:</span> git@github.com:YourName/YourName.github.io.git</span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
-
-<h3 id="写文章与发布"><a href="#写文章与发布" class="headerlink" title="写文章与发布"></a>写文章与发布</h3><p>需要安装一个扩展：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i hexo-deployer-git</span><br></pre></td></tr></table></figure>
-
-<p>新建一个.md文章</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="type">post</span> <span class="string">&quot;article title&quot;</span></span><br></pre></td></tr></table></figure>
-<p>文章目录存放在<code>source\_posts</code>中</p>
-<p>文章写完之后</p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g <span class="meta">&amp;&amp; hexo d</span></span><br></pre></td></tr></table></figure>
-<p>进行网页的生成和提交</p>
-<h2 id="常用Hexo命令"><a href="#常用Hexo命令" class="headerlink" title="常用Hexo命令"></a>常用Hexo命令</h2><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> <span class="string">&quot;postName&quot;</span> <span class="meta">#新建文章</span></span><br><span class="line">hexo <span class="keyword">new</span> page <span class="string">&quot;pageName&quot;</span> <span class="meta">#新建页面</span></span><br><span class="line">hexo generate <span class="meta">#生成静态页面至public目录</span></span><br><span class="line">hexo <span class="keyword">server</span> <span class="meta">#开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭server）</span></span><br><span class="line">hexo deploy <span class="meta">#部署到GitHub</span></span><br><span class="line">hexo help  <span class="meta"># 查看帮助</span></span><br><span class="line">hexo version  <span class="meta">#查看Hexo的版本</span></span><br><span class="line"></span><br><span class="line">hexo n == hexo <span class="keyword">new</span></span><br><span class="line">hexo g == hexo generate</span><br><span class="line">hexo s == hexo <span class="keyword">server</span></span><br><span class="line">hexo d == hexo deploy</span><br><span class="line"></span><br><span class="line">hexo s -g <span class="meta">#生成并本地预览</span></span><br><span class="line">hexo d -g <span class="meta">#生成并上传</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/06/11/First-blog/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
