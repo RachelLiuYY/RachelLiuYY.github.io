@@ -20,20 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="这是对于论文《A review on crowd simulation and modeling》的阅读笔记    常用词汇 含义    lane formation 车道形成   vortex formation 涡流形成   congestion 拥塞   trajectory 轨迹、弹道   人群模拟的主要方法可以分为：  微观模型 Microscopic 宏观模型 Macroscopic">
+  <meta name="description" content="UE4自定义泛型蓝图节点 起因是在存取数据表的时候，希望蓝图节点的输入能够普适所有的结构体（只要继承自FTableRowBase）就可以，所以就去查找了相关的实现方法。  关键词： UE4, Wildcard, customThunk, Generic 想实现的效果就是类似GetDataTableRow的输出节点  UE4的蓝图和C++都是静态类型的编程语言，因此想要蓝图节点支持任意类型的参数要么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CrowdSimulationReview">
-<meta property="og:url" content="http://example.com/2021/06/16/CrowdSimulationReview/index.html">
+<meta property="og:title" content="UE4泛型">
+<meta property="og:url" content="http://example.com/2021/06/24/UE4%E6%B3%9B%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Sheeep Blog">
-<meta property="og:description" content="这是对于论文《A review on crowd simulation and modeling》的阅读笔记    常用词汇 含义    lane formation 车道形成   vortex formation 涡流形成   congestion 拥塞   trajectory 轨迹、弹道   人群模拟的主要方法可以分为：  微观模型 Microscopic 宏观模型 Macroscopic">
+<meta property="og:description" content="UE4自定义泛型蓝图节点 起因是在存取数据表的时候，希望蓝图节点的输入能够普适所有的结构体（只要继承自FTableRowBase）就可以，所以就去查找了相关的实现方法。  关键词： UE4, Wildcard, customThunk, Generic 想实现的效果就是类似GetDataTableRow的输出节点  UE4的蓝图和C++都是静态类型的编程语言，因此想要蓝图节点支持任意类型的参数要么">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-06-16T05:03:06.000Z">
-<meta property="article:modified_time" content="2021-06-16T06:58:15.156Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/RachelLiuYY/RachelLiuYY.github.io/Hexo/source/_posts/Image/GetDataTableRow.png">
+<meta property="article:published_time" content="2021-06-24T06:32:35.000Z">
+<meta property="article:modified_time" content="2021-06-24T10:00:49.606Z">
 <meta property="article:author" content="Sheeeep Liu">
-<meta property="article:tag" content="Crowd">
+<meta property="article:tag" content="UE4">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/RachelLiuYY/RachelLiuYY.github.io/Hexo/source/_posts/Image/GetDataTableRow.png">
 
-<link rel="canonical" href="http://example.com/2021/06/16/CrowdSimulationReview/">
+<link rel="canonical" href="http://example.com/2021/06/24/UE4%E6%B3%9B%E5%9E%8B/">
 
 
 <script id="page-configurations">
@@ -46,7 +48,7 @@
   };
 </script>
 
-  <title>CrowdSimulationReview | Sheeep Blog</title>
+  <title>UE4泛型 | Sheeep Blog</title>
   
 
 
@@ -167,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/16/CrowdSimulationReview/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/24/UE4%E6%B3%9B%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -180,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          CrowdSimulationReview
+          UE4泛型
         </h1>
 
         <div class="post-meta">
@@ -191,7 +193,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-06-16 13:03:06 / 修改时间：14:58:15" itemprop="dateCreated datePublished" datetime="2021-06-16T13:03:06+08:00">2021-06-16</time>
+              <time title="创建时间：2021-06-24 14:32:35 / 修改时间：18:00:49" itemprop="dateCreated datePublished" datetime="2021-06-24T14:32:35+08:00">2021-06-24</time>
             </span>
 
           
@@ -205,36 +207,38 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>这是对于论文《A review on crowd simulation and modeling》的阅读笔记</p>
-<table>
-<thead>
-<tr>
-<th>常用词汇</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>lane formation</td>
-<td>车道形成</td>
-</tr>
-<tr>
-<td>vortex formation</td>
-<td>涡流形成</td>
-</tr>
-<tr>
-<td>congestion</td>
-<td>拥塞</td>
-</tr>
-<tr>
-<td>trajectory</td>
-<td>轨迹、弹道</td>
-</tr>
-</tbody></table>
-<p>人群模拟的主要方法可以分为：</p>
+        <h2 id="UE4自定义泛型蓝图节点"><a href="#UE4自定义泛型蓝图节点" class="headerlink" title="UE4自定义泛型蓝图节点"></a>UE4自定义泛型蓝图节点</h2><blockquote>
+<p>起因是在存取数据表的时候，希望蓝图节点的输入能够普适所有的结构体（只要继承自FTableRowBase）就可以，所以就去查找了相关的实现方法。</p>
+</blockquote>
+<p>关键词： UE4, Wildcard, customThunk, Generic</p>
+<p>想实现的效果就是类似GetDataTableRow的输出节点</p>
+<p><img src="https://raw.githubusercontent.com/RachelLiuYY/RachelLiuYY.github.io/Hexo/source/_posts/Image/GetDataTableRow.png" alt="Get DataTable Row"></p>
+<p>UE4的蓝图和C++都是静态类型的编程语言，因此想要蓝图节点支持任意类型的参数要么使用基类指针作为参数然后在具体实现时Cast，根据反射信息具体处理；要么使用Wildcard（通配符）实现。</p>
+<span id="more"></span>
+
+<p>因此需要先了解UE4中相应的实现方法：</p>
 <ol>
-<li>微观模型 Microscopic</li>
-<li>宏观模型 Macroscopic</li>
-<li>细观模型 Mesoscopic</li>
+<li>继承UK2Node类，并根据需要实现其派生类，是对蓝图节点最深入的定制开发，可以在编辑模式时动态添删除蓝图节点的针脚。</li>
+<li>使用UFUNCTION中CustomThunk说明符以及相应的类型说明符标识wildcard参数，并为该蓝图函数自定义DECLARE_FUNCTION()函数体。</li>
+</ol>
+<p>第二种方式主要是利用CustomThunk标识符，使得UHT(Unreal Header Tool)不要生成默认的蓝图包装函数，而是自定定义函数体，这种方式需要手工控制蓝图的“栈”，但是相比方法1来说不需要处理蓝图的编辑器UI部分，相对简单。</p>
+<h2 id="泛型蓝图节点组成"><a href="#泛型蓝图节点组成" class="headerlink" title="泛型蓝图节点组成"></a>泛型蓝图节点组成</h2><h3 id="函数声明"><a href="#函数声明" class="headerlink" title="函数声明"></a>函数声明</h3><p>在UFUNCTION宏中包含CustomThunk说明符，泛型中具体的参数和依赖关系由meta说明符列表决定。</p>
+<p>标识泛型函数通配符(wildcard)参数的说明符也有四种，分别为标识单个变量SingleVariable wildcard类型的”CustomStructureParam”说明符、标识容器Array的”ArrayParm”说明符、标识容器Map的”MapParam”说明符、标识容器Set的”SetParam”说明符以及各种辅助说明符。</p>
+<ul>
+<li>ArrayTypeDependentParams可以描述数组参数的依赖关系</li>
+<li>MapKeyParam和MapValueParam说明符标识的参数可以与MapParam说明符标识的参数相互依赖</li>
+<li>SetParam说明符列表的参数之间可以使用”,” “|”两种分隔符；多个泛型参数的依赖关系由分隔符的类型决定，以逗号”,”分隔的多个泛型Set参数之间相互独立，以”|”分隔的多个泛型Set参数之间相互依赖。</li>
+</ul>
+<h3 id="自定义函数体"><a href="#自定义函数体" class="headerlink" title="自定义函数体"></a>自定义函数体</h3><p>定义了泛型蓝图函数的Thunk函数体，主要的作用是从蓝图虚拟机中的“栈”获取传递的参数。</p>
+<h3 id="真正执行的函数逻辑"><a href="#真正执行的函数逻辑" class="headerlink" title="真正执行的函数逻辑"></a>真正执行的函数逻辑</h3><p>每一种Property都有两个基本属性，PropertyAddress和Property Size。不同类型的Property除了内存地址不一样，所占用的内存空间也不同。</p>
+<p>对于派生与FProperty类的类型，都可以直接使用FProperty* 指示空间大小。</p>
+<p>对于Map/Array/Set则需要分别使用FMapProperty*/FArrayProperty*/FSetProperty*来表示。</p>
+<p>参考：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/149838096">https://zhuanlan.zhihu.com/p/149838096</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/149869329">https://zhuanlan.zhihu.com/p/149869329</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/148209184">https://zhuanlan.zhihu.com/p/148209184</a></li>
+<li><a target="_blank" rel="noopener" href="https://neil3d.github.io/unreal/blueprint-wildcard.html">https://neil3d.github.io/unreal/blueprint-wildcard.html</a></li>
 </ol>
 
     </div>
@@ -250,7 +254,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Crowd/" rel="tag"><i class="fa fa-tag"></i> Crowd</a>
+              <a href="/tags/UE4/" rel="tag"><i class="fa fa-tag"></i> UE4</a>
           </div>
 
         
@@ -259,13 +263,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/06/16/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
+    <a href="/2021/06/24/linked-list/" rel="prev" title="linked-list">
+      <i class="fa fa-chevron-left"></i> linked-list
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/06/17/Cpp-review/" rel="next" title="Cpp review">
-      Cpp review <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -324,6 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UE4%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%9B%E5%9E%8B%E8%93%9D%E5%9B%BE%E8%8A%82%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">UE4自定义泛型蓝图节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E8%93%9D%E5%9B%BE%E8%8A%82%E7%82%B9%E7%BB%84%E6%88%90"><span class="nav-number">2.</span> <span class="nav-text">泛型蓝图节点组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E"><span class="nav-number">2.1.</span> <span class="nav-text">函数声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0%E4%BD%93"><span class="nav-number">2.2.</span> <span class="nav-text">自定义函数体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%9F%E6%AD%A3%E6%89%A7%E8%A1%8C%E7%9A%84%E5%87%BD%E6%95%B0%E9%80%BB%E8%BE%91"><span class="nav-number">2.3.</span> <span class="nav-text">真正执行的函数逻辑</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
