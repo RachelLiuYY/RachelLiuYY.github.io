@@ -1,7 +1,7 @@
 ---
 title: UE4泛型
 date: 2021-06-24 14:32:35
-tags: [UE4] [generic]
+tags: [UE4]
 ---
 
 ## UE4自定义泛型蓝图节点
@@ -14,6 +14,8 @@ tags: [UE4] [generic]
 ![Get DataTable Row](https://raw.githubusercontent.com/RachelLiuYY/RachelLiuYY.github.io/Hexo/source/_posts/Image/GetDataTableRow.png)
 
 UE4的蓝图和C++都是静态类型的编程语言，因此想要蓝图节点支持任意类型的参数要么使用基类指针作为参数然后在具体实现时Cast，根据反射信息具体处理；要么使用Wildcard（通配符）实现。
+
+<!-- more -->
 
 因此需要先了解UE4中相应的实现方法：
 1. 继承UK2Node类，并根据需要实现其派生类，是对蓝图节点最深入的定制开发，可以在编辑模式时动态添删除蓝图节点的针脚。
