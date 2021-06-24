@@ -22,6 +22,8 @@ yourname.github.io
 
 这样博客的网站就是http://YourName.github.io
 
+<!-- more -->
+
 之后在电脑中创建一个存放博客文件的文件夹，在该目录下面打开Git Bash,输入`npm i hexo-cli g` 安装hexo
 
 验证：`hexo -v` 
