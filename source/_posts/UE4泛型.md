@@ -35,10 +35,108 @@ UE4的蓝图和C++都是静态类型的编程语言，因此想要蓝图节点�
 
 
 ### 自定义函数体
-定义了泛型蓝图函数的Thunk函数体，主要的作用是从蓝图虚拟机中的“栈”获取传递的参数。
+定义了泛型蓝图函数的Thunk函数体，主要的作用是从蓝图虚拟机中的“栈”获取传递的参数。并将值传递给执行特定功能的C++函数。
 
-### 真正执行的函数逻辑
+#### Thunk函数
+对于定义在C++类中的，用UFUNCTION宏标识标志为蓝图可以调用的函数，在编译是会在generated.h文件中生成类似如下的代码块
+```
+//.h文件
+/*Add the Row to the DataTable */
+UFUNCTION(BlueprintCallable, Category = "DataTable", CustomThunk, meta = (CustomStructureParam = "RowData"))
+	static void AddRowToDataTable(UDataTable* DataTable, const FName RowName, const UStructProperty* RowData);
 
+//generated.h文件
+DECLARE_FUNCTION(execAddRowToDataTable)
+	{
+		P_GET_PROPERTY_REF(FObjectProperty, DataTable);
+		P_GET_PROPERTY(FNameProperty, RowName);
+
+		Stack.StepCompiledIn<FStructProperty>(NULL);
+		Stack.Step(Stack.Object, NULL);
+		FStructProperty* StructProperty = CastField<FStructProperty>(Stack.MostRecentProperty);
+		void* StructPtr = Stack.MostRecentPropertyAddress;
+		P_FINISH;
+		P_NATIVE_BEGIN;
+		Generic_AddRow(DataTable, RowName, StructProperty, StructPtr);
+		P_NATIVE_END;
+	}
+```
+#### Thunk函数体的语法规则
+1. Thunk函数的基本形式，DECLARE_FUNCTION(execFunctioName){}，FunctionName为函数的名称，P_FINISH前为获取函数参数的代码，P_NATIVE_BEGIN和P_NATIVE_END宏之间的是真正被调用的函数
+   ```
+   DECLARE_FUNCTION(execFunctionName)
+    {
+	    // Get Parameters
+	    P_FINISH;
+	    P_NATIVE_BEGIN;
+	    *(FString*)Result = Generic_FunctionName();   // Call generic function
+	    P_NATIVE_END;
+    }
+   ```
+2. Thunk函数体在获取多个参数时，获取的先后次序与声明时的参数列表中的次序保持一致。
+
+3. 在Thunk函数体中，泛型蓝图函数的参数列表中确定类型的参数（如bool / uint8 / int32 / float / FName / FString等）和泛型参数（wilcard SingleVariable / TArray / TMap / TSet）获取方式不同。
+
+- 确定类型的函数参数变量获取的示例：
+```
+UFUNCTION(BlueprintCallable, Category = "MyProject")
+		static void  TestFunction(
+		   bool BoolVar
+		 , uint8 ByteVar
+		 , int32 IntegerVar
+		 , float FloatVar
+		 , FName NameVar
+		 , FString StringVar
+		 , const FText& TextVar
+		 , FVector VectorVar
+		 , FTransform TransformVar
+		 , UObject* ObjectVar
+		 , TSubclassOf<UObject> ClassVar
+		 , bool& RetBoolVar
+		 , uint8& RetByteVar
+		 , int32& RetIntegerVar
+		 , float& RetFloatVar
+		 , FName& RetNameVar
+		 , FString& RetStringVar
+		 , FText& RetTextVar
+		 , FVector& RetVectorVar
+		 , FTransform& RetTransformVar
+		 , UObject*& RetObjectVar
+		 , TSubclassOf<UObject>& RetClassVar
+	 ) ;
+```
+对应的自动生成的Thunk函数体：
+```
+DECLARE_FUNCTION(execTestFunction) \
+{ \
+	P_GET_UBOOL(Z_Param_BoolVar); \
+	P_GET_PROPERTY(FByteProperty, Z_Param_ByteVar); \
+	P_GET_PROPERTY(FIntProperty, Z_Param_IntegerVar); \
+	P_GET_PROPERTY(FFloatProperty, Z_Param_FloatVar); \
+	P_GET_PROPERTY(FNameProperty, Z_Param_NameVar); \
+	P_GET_PROPERTY(FStrProperty, Z_Param_StringVar); \
+	P_GET_PROPERTY_REF(FTextProperty, Z_Param_Out_TextVar); \
+	P_GET_STRUCT(FVector, Z_Param_VectorVar); \
+	P_GET_STRUCT(FTransform, Z_Param_TransformVar); \
+	P_GET_OBJECT(FObject, Z_Param_ObjectVar); \
+	P_GET_OBJECT(FClass, Z_Param_ClassVar); \
+	P_GET_UBOOL_REF(Z_Param_Out_RetBoolVar); \
+	P_GET_PROPERTY_REF(FByteProperty, Z_Param_Out_RetByteVar); \
+	P_GET_PROPERTY_REF(FIntProperty, Z_Param_Out_RetIntegerVar); \
+	P_GET_PROPERTY_REF(FFloatProperty, Z_Param_Out_RetFloatVar); \
+	P_GET_PROPERTY_REF(FNameProperty, Z_Param_Out_RetNameVar); \
+	P_GET_PROPERTY_REF(FStrProperty, Z_Param_Out_RetStringVar); \
+	P_GET_PROPERTY_REF(FTextProperty, Z_Param_Out_RetTextVar); \
+	P_GET_STRUCT_REF(FVector, Z_Param_Out_RetVectorVar); \
+	P_GET_STRUCT_REF(FTransform, Z_Param_Out_RetTransformVar); \
+	P_GET_OBJECT_REF(FObject, Z_Param_Out_RetObjectVar); \
+	P_GET_OBJECT_REF_NO_PTR(TSubclassOf<UObject>, Z_Param_Out_RetClassVar); \
+	P_FINISH; \
+} \
+```
+- 获取泛型类型的参数变量
+  
+获取泛型参数需要同时获取变量地址void* 以及变量属性FProperty*/FArrayProperty*/FMapProperty*/FSetProperty* 
 
 每一种Property都有两个基本属性，PropertyAddress和Property Size。不同类型的Property除了内存地址不一样，所占用的内存空间也不同。
 
@@ -46,6 +144,52 @@ UE4的蓝图和C++都是静态类型的编程语言，因此想要蓝图节点�
 
 对于Map/Array/Set则需要分别使用FMapProperty*/FArrayProperty*/FSetProperty*来表示。
 
+```
+//获取泛型Single Variable
+Stack.StepCompiledIn<FStructProperty>(NULL);
+void* SrcPropertyAddr = Stack.MostRecentPropertyAddress;
+FProperty* SrcProperty = Cast<FProperty>(Stack.MostRecentProperty);
+
+//获取泛型Array Variable
+Stack.StepCompiledIn<FArrayProperty>(NULL);
+void* SrcArrayAddr = Stack.MostRecentPropertyAddress;
+FArrayProperty* SrcArrayProperty = Cast<FArrayProperty>(Stack.MostRecentProperty);
+
+//获取泛型Map Variable
+Stack.MostRecentProperty = nullptr;
+Stack.StepCompiledIn<FMapProperty>(NULL);
+void* SrcMapAddr = Stack.MostRecentPropertyAddress;
+FMapProperty* SrcMapProperty = Cast<FMapProperty>(StackMostRecentProperty);
+
+//获取泛型Set Variable
+Stack.MostRecentProperty = nullptr;
+Stack.StepCompiledIn<FSetProperty>(NULL);
+void* SetAddr = Stack.MostRecentPropertyAddress;
+FSetProperty* SetProperty = Cast<FSetProperty>(Stack.MostRecentProperty);
+```
+
+下图是UE4.26版本的类型以及属性继承关系图，获取的泛型参数变量类型根据下图所示
+
+![ObjectHierarchy](https://raw.githubusercontent.com/RachelLiuYY/RachelLiuYY.github.io/Hexo/source/_posts/Image/ObjectHierarchyFwd.png)
+
+### 真正执行的函数逻辑
+
+对于执行逻辑的函数体，主要的作用就是根据获取到的参数变量地址以及变量属性，进行处理；或者是输出参数。
+
+## 可以参考的引擎源码
+
+> 在KismetLibrary中已经提供了一个获取数据表对应行结构体的节点
+> 
+> 这个节点定义的源文件位于.\UE_4.26\Engine\Source\Runtime\Engine\Classes\Kismet\DataTableFunctionLibrary.h中
+> 
+> 相对应的Cpp文件位于UE_4.26\Engine\Source\Runtime\Engine\Private\DataTableFunctionLibrary.cpp中
+
+对于泛型参数为SingleVariable的节点可以参考其中的写法，对于Array/Map/Set结构可以参考KistmetArrayLibrary/BlueprintMapLibrary/BlueprintSetLibrary文件。
+
+Array/Map/Set结构主要是利用UE的反射机制，借助FScriptArrayHelper/FScriptMapHelper/FScriptSetHelper来对泛型变量进行赋值操作。
+
+
+### 
 
 参考：
 1. https://zhuanlan.zhihu.com/p/149838096
