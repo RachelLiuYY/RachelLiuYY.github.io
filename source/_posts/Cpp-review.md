@@ -274,7 +274,135 @@ int fn1()
 }
 ```
 
-### 20. 链表题
+### 20. 指针找错题
+
+1. 
+```
+void test1()  
+{
+　　char string[10];
+　　char* str1 = "0123456789";
+　　strcpy( string, str1 );
+}
+```
+> 数组越界，字符串str1需要11个字节（末尾的'/0'）
+
+2. 
+```
+void test2()
+{
+　　char string[10], str1[10]; 
+　　int i;
+　　for(i=0; i<10; i++)
+　　{
+　　 str1= 'a';
+　　}
+　　strcpy( string, str1 );
+}
+```
+> 对于str1的赋值没有在末尾加入'/0'结束符，在strcpy的时候会非常危险，所复制的字节数具有不确定性。
+
+3. 
+```
+void test3(char* str1)
+{
+　　char string[10];
+　　if( strlen( str1 ) <= 10 )
+　　{
+　　 strcpy( string, str1 );
+　　}
+}　
+```
+> 代码中的小于等于应修改为小于，因为strlen并不会统计字符串结尾的'/0'
+
+4. 
+```
+void GetMemory( char *p )
+{
+　　p = (char *) malloc( 100 );
+}
+void Test( void )
+{
+　　char *str = NULL;
+　　GetMemory( str );
+　　strcpy( str, "hello world" );
+　　printf( str );
+} 
+```
+> 传入GetMemory函数的形参为字符串指针，在函数内部修改形参并不能真正的改变传入形参的值，str仍未NULL
+
+5.
+```
+void GetMemory( char **p, int num )
+{
+　　*p = (char *) malloc( num );
+}
+void Test( void )
+{
+　　char *str = NULL;
+　　GetMemory( &str, 100 );
+　　strcpy( str, "hello" );
+　　printf( str );
+}
+```
+> 未判断内存是否申请成功，而且未对malloc的内存进行释放\
+
+6. 
+```
+char *GetMemory( void )
+{
+　　char p[] = "hello world";
+　　return p;
+}
+void Test( void )
+{
+　　char *str = NULL;
+　　str = GetMemory();
+　　printf( str );
+}
+```
+> p[]数组为函数内的局部自动变量，在函数返回后，内存已经被释放。这是许多程序员常犯的错误，其根源在于不理解变量的生存期。
+> 对内存操作的考查主要集中在：
+> 1. 指针的理解
+> 2. 变量的生存期和作用范围
+> 3. 良好的动态内存申请和释放习惯
+
+
+
+### 21. 编写一个标准strcpy函数
+```
+char * strcpy( char *strDest, const char *strSrc )
+{
+　　assert( (strDest != NULL) &&(strSrc != NULL) ); 
+　　char *address = strDest;
+　　while( (*strDest++ = * strSrc++) != ‘/0’ );
+　　return address;
+}
+```
+- 将源字符串加const，表明其为输入参数
+- 对源地址和目的地址加非空断言
+- 为了实现链式操作，将地址返回
+
+同理，标准的strlen函数：
+```
+int strlen( const char *str )：
+{
+　　assert( str != NULL ); //断言字符串地址非0
+　　int len=0; //注，一定要初始化。
+　　while( (*str++) != '/0' )
+　　{
+　　 len++;
+　　}
+　　return len;
+}
+```
+
+### 22. 请问交换机和路由器各自的实现原理是什么？分别在哪个层次上面实现的？
+
+
+交换机：数据链路层；
+
+路由器：网络层。
 
 
 参考：https://zhuanlan.zhihu.com/p/72485165
