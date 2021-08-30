@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="这是对于论文《A review on crowd simulation and modeling》的阅读笔记    常用词汇 含义    lane formation 车道形成   vortex formation 涡流形成   congestion 拥塞   trajectory 轨迹、弹道   人群模拟的主要方法可以分为：  微观模型 Microscopic 宏观模型 Macroscopic">
@@ -28,7 +28,7 @@
 <meta property="og:description" content="这是对于论文《A review on crowd simulation and modeling》的阅读笔记    常用词汇 含义    lane formation 车道形成   vortex formation 涡流形成   congestion 拥塞   trajectory 轨迹、弹道   人群模拟的主要方法可以分为：  微观模型 Microscopic 宏观模型 Macroscopic">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-06-16T05:03:06.000Z">
-<meta property="article:modified_time" content="2021-06-16T06:58:15.156Z">
+<meta property="article:modified_time" content="2021-08-30T09:08:26.892Z">
 <meta property="article:author" content="Sheeeep Liu">
 <meta property="article:tag" content="Crowd">
 <meta name="twitter:card" content="summary">
@@ -129,9 +129,14 @@
     <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">6</span></a>
 
   </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">0</span></a>
+
+  </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">7</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">6</span></a>
 
   </li>
   </ul>
@@ -184,10 +189,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-06-16 13:03:06 / 修改时间：14:58:15" itemprop="dateCreated datePublished" datetime="2021-06-16T13:03:06+08:00">2021-06-16</time>
+              <time title="创建时间：2021-06-16 13:03:06" itemprop="dateCreated datePublished" datetime="2021-06-16T13:03:06+08:00">2021-06-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-30 17:08:26" itemprop="dateModified" datetime="2021-08-30T17:08:26+08:00">2021-08-30</time>
+              </span>
 
           
 
@@ -231,7 +242,7 @@
 <li>宏观模型 Macroscopic</li>
 <li>细观模型 Mesoscopic</li>
 </ol>
-
+<span id="more"></span>
     </div>
 
     
@@ -254,8 +265,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/06/16/hello-world/" rel="prev" title="Hello World">
-      <i class="fa fa-chevron-left"></i> Hello World
+    <a href="/2021/06/11/First-blog/" rel="prev" title="First blog">
+      <i class="fa fa-chevron-left"></i> First blog
     </a></div>
       <div class="post-nav-item">
     <a href="/2021/06/17/Cpp-review/" rel="next" title="Cpp review">
@@ -332,7 +343,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
