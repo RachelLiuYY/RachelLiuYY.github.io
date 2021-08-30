@@ -14,6 +14,8 @@ struct Node
 typedef struct Node Node;
 ```
 
+<!-- more -->
+
 ## 常用功能
 
 ### 链表逆序

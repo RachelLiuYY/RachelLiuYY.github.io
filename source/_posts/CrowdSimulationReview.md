@@ -19,3 +19,5 @@ tags: [Crowd]
 1. 微观模型 Microscopic
 2. 宏观模型 Macroscopic
 3. 细观模型 Mesoscopic
+
+<!-- more -->
