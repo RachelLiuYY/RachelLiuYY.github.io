@@ -348,6 +348,8 @@ void UDataTable_Extend::Generic_GetRowList(UObject* DataTable, FArrayProperty* A
 	}
 }
 ```
+最后实现的方法有：
+![Functions](https://raw.githubusercontent.com/RachelLiuYY/RachelLiuYY.github.io/Hexo/source/_posts/Image/Generic.png)
 
 
 参考：
