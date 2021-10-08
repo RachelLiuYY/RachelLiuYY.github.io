@@ -188,8 +188,169 @@ FSetProperty* SetProperty = Cast<FSetProperty>(Stack.MostRecentProperty);
 
 Array/Map/Set结构主要是利用UE的反射机制，借助FScriptArrayHelper/FScriptMapHelper/FScriptSetHelper来对泛型变量进行赋值操作。
 
+## 数据表DataTable相关的泛型方法
 
-### 
+在实际项目中，经常会遇到对数据表的读取与处理，如果不在C++中写方法节点，蓝图对数据表的支持函数只有获取行RowNames(也就是行名称，第一列)，以及根据RowName获取蓝图的行，这个获取行结构体的蓝图节点就是一个泛型操作。
+
+而且在项目中导入数据表格时，必须要指定表格对应的结构体，而通过c++进行读取表格更加方便，可以通过泛型不指定表格的结构体直接进行处理。
+
+### 对表格添加行
+
+首先在.h文件中添加方法的定义，输入的参数包括表格，添加行的行名RowName，具体的添加行的结构体。正如上文所说，在定义方法的时候，需要添加CustomThunk标识符，并在meta后说明具体的泛型参数，在后续的并且说明具体的执行函数。
+```
+/*Add the Row to the DataTable */
+UFUNCTION(BlueprintCallable, Category = "DataTable", CustomThunk, meta = (CustomStructureParam = "RowData"))
+	static void AddRowToDataTable(UDataTable* DataTable, const FName RowName, const UStructProperty* RowData);
+
+static void Generic_AddRow(UObject* DataTable, const FName RowName, const FStructProperty* StructProperty, const void* StructPtr);
+
+DECLARE_FUNCTION(execAddRowToDataTable)
+{
+	P_GET_PROPERTY_REF(FObjectProperty, DataTable);
+	P_GET_PROPERTY(FNameProperty, RowName);
+
+	Stack.StepCompiledIn<FStructProperty>(NULL);
+	Stack.Step(Stack.Object, NULL);
+	FStructProperty* StructProperty = CastField<FStructProperty>(Stack.MostRecentProperty);
+	void* StructPtr = Stack.MostRecentPropertyAddress;
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	Generic_AddRow(DataTable, RowName, StructProperty, StructPtr);
+	P_NATIVE_END;
+}
+```
+然后在.cpp文件中定义具体的执行函数的方法,需要添加判断，如果添加的行结构体和表格的行结构体相同，则进行添加（并且需要判断行名是否重复）否则报出错误。
+```
+void UDataTable_Extend::Generic_AddRow(UObject* DataTable, const FName RowName, const FStructProperty* StructProperty, const void* StructPtr)
+{
+	UDataTable* Table = Cast<UDataTable>(DataTable);
+	UScriptStruct* Rowstruct = StructProperty->Struct;
+	if (Rowstruct == Table->RowStruct)
+	{
+		FTableRowBase* row = (FTableRowBase*)StructPtr;
+		void* RowPtr = Table->FindRowUnchecked(RowName);
+		if (RowPtr == nullptr)
+		{
+			Table->AddRow(RowName, *row);
+		}
+		else
+		{
+			UE_LOG(LogDataTable_Extend, Warning, TEXT("AddRow : Requested RowName exist"));
+		}
+	}
+	else
+		UE_LOG(LogDataTable_Extend, Warning, TEXT("Struct is not suitable"));
+	return;
+}
+```
+
+### 对表格判断是否存在该行
+.h 根据RowName判断是否存在该行名，如果存在，则返回该行
+```
+/*According to the RowName Find the Row in DataTable, if exist return true*/
+UFUNCTION(BlueprintCallable, Category = "DataTable", CustomThunk, meta = (CustomStructureParam = "RowData"))
+	static bool FindRowInDataTable(UDataTable* DataTable, const FName RowName, FTableRowBase& RowData);
+
+static bool Generic_FindRow(UObject* DataTable, const FName RowName, FStructProperty* StructProperty, void* StructPtr);
+
+DECLARE_FUNCTION(execFindRowInDataTable)
+{
+	P_GET_PROPERTY_REF(FObjectProperty, DataTable);
+	P_GET_PROPERTY(FNameProperty, RowName);
+
+	Stack.StepCompiledIn<FStructProperty>(NULL);
+	Stack.Step(Stack.Object, NULL);
+	FStructProperty* StructProperty = CastField<FStructProperty>(Stack.ostRecentProperty);
+	void* StructPtr = Stack.MostRecentPropertyAddress;
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	*(bool*)RESULT_PARAM = Generic_FindRow(DataTable, RowName, StructProperty, StructPtr);
+	P_NATIVE_END;
+}
+```
+.cpp中的实现
+```
+bool UDataTable_Extend::Generic_FindRow(UObject* DataTable, const FName RowName, FStructProperty* StructProperty, void* StructPtr)
+{
+	const FString& Context = FString();
+	UDataTable* Table = Cast<UDataTable>(DataTable);
+	if (StructProperty->Struct == Table->RowStruct)
+	{
+		void* RowPtr = Table->FindRowUnchecked(RowName);
+		if (RowPtr == nullptr)
+		{
+			UE_LOG(LogDataTable_Extend, Warning, TEXT("FindRow : requested row %s not in DataTable."), *RowName.ToString());
+			return false;
+		}
+		const UScriptStruct* StructType = Table->GetRowStruct();
+		StructType->CopyScriptStruct(StructPtr, RowPtr);
+		return true;
+	}
+	else
+	{
+		UE_LOG(LogDataTable_Extend, Warning, TEXT("FindRow : Struct is not suitable"));
+		return false;
+	}
+}
+```
+
+### 获取表格的行数组
+
+这个方法需要涉及到List数组结构的读取。
+```
+/*Get row list of the DataTable*/
+UFUNCTION(BlueprintCallable, Category = "DataTable", CustomThunk, meta = (ArrayParm = "RowList"))
+	static void GetRowList(UDataTable* DataTable, TArray<FTableRowBase>& RowList);
+
+static void Generic_GetRowList(UObject* DataTable, FArrayProperty* ArrayProperty, void* ArrayAddr);
+
+DECLARE_FUNCTION(execGetRowList)
+{
+	P_GET_PROPERTY_REF(FObjectProperty, DataTable);
+		
+	Stack.StepCompiledIn<FArrayProperty>(NULL);
+	FArrayProperty* ArrayProperty = CastField<FArrayProperty>(Stack.MostRecentProperty);
+	void* ArrayAddr = Stack.MostRecentPropertyAddress;
+
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	Generic_GetRowList(DataTable, ArrayProperty, ArrayAddr);
+	P_NATIVE_END;
+}
+```
+.cpp中的实现，需要的数组进行判断，如果数组的元素不是结构体，则报错；如果结构体与表格结构不同，则报出警告。
+```
+void UDataTable_Extend::Generic_GetRowList(UObject* DataTable, FArrayProperty* ArrayProperty, void* ArrayAddr)
+{
+	UDataTable* Table = Cast<UDataTable>(DataTable);
+	if (ArrayProperty->Inner->GetID() != FName("StructProperty"))
+	{
+		UE_LOG(LogDataTable_Extend, Warning, TEXT("GetRowList : Map value is not TableRowBase. "));
+	}
+	else
+	{
+		FStructProperty* RowStruct = CastField<FStructProperty>(ArrayProperty->Inner);
+		if (RowStruct->Struct == Table->GetRowStruct())
+		{
+			const TMap<FName, uint8*> RowMap = Table->GetRowMap();
+			FScriptArrayHelper ArrayHelper(ArrayProperty, ArrayAddr);
+			FProperty* InnerProp = ArrayProperty->Inner;
+			for (auto It = RowMap.CreateConstIterator(); It; ++It)
+			{
+				int32 LastIndex = ArrayHelper.AddValue();
+				InnerProp->CopySingleValueToScriptVM(ArrayHelper.GetRawPtr(LastIndex), It->Value);
+			}
+		}
+		else
+		{
+			UE_LOG(LogDataTable_Extend, Warning, TEXT("GetRowList : Struct %s is not suitable. "), *ArrayProperty->Inner->GetID().ToString());
+		}
+	}
+}
+```
+最后实现的方法有：
+![Functions](https://raw.githubusercontent.com/RachelLiuYY/RachelLiuYY.github.io/Hexo/source/_posts/Image/Generic.png)
+
 
 参考：
 1. https://zhuanlan.zhihu.com/p/149838096
