@@ -133,7 +133,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">6</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">7</span></a>
 
   </li>
   </ul>
@@ -159,6 +159,92 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/30/Niagara-Boid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Sheeeep Liu">
+      <meta itemprop="description" content="这是一只杨">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sheeep Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/30/Niagara-Boid/" class="post-title-link" itemprop="url">Niagara_Boid</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-30 17:13:14" itemprop="dateCreated datePublished" datetime="2021-08-30T17:13:14+08:00">2021-08-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-08 15:21:26" itemprop="dateModified" datetime="2021-10-08T15:21:26+08:00">2021-10-08</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>UE4中对于Niagara在进行进一步的完善，在4.26推出了Simulation Stage支持了更高级的应用，在官方示例中利用渲染阶段创建了许多高级的用例，例如PBD，Boid鸟群，与环境的交互等，还有很多大佬利用Niagara模拟流体等效果。</p>
+</blockquote>
+<blockquote>
+<p>这次主要是通过官方示例中的Niagra_Advanced关卡中的Boid鸟群更好的了解使用流程</p>
+</blockquote>
+<h2 id="Simulation-Stage"><a href="#Simulation-Stage" class="headerlink" title="Simulation Stage"></a>Simulation Stage</h2><p>模拟阶段是一种迭代粒子、渲染目标纹素或网格集合的网格单元的实验方法。</p>
+<p>这解锁了编写迭代约束、基于网格的求解器、将属性传入和传出网格以及直接输出这些属性以渲染目标以在材质中渲染的能力。</p>
+<p>添加渲染阶段，渲染阶段的主要属性，是说明这个阶段需要针对哪个对象，进行几次迭代。</p>
+<p>可选的对象有粒子、RenderTarget、Grid2D，对于RenderTarget则针对每一个纹素进行处理，对于Grid2D则针对每一个网格点。</p>
+<p>相当于是在粒子的执行栈中依次加入的执行阶段，每个粒子在Update的过程中全部执行一个阶段之后才会执行下一个Simulation Stage。每个阶段之间的数据传输除了依靠Attribute Reader之外，最主要的就是依靠数据结构Grid2D,Neighbor Grid3D等。</p>
+<p>模拟阶段开启：<br>将Emitter设置为GPU渲染，并打开显示高级属性(右上角的小眼睛)，便能够打开渲染阶段。<br><img src="https://github.com/RachelLiuYY/RachelLiuYY.github.io/blob/Hexo/source/_posts/Image/Niagara/SimulationStageOpen.png?raw=true" alt="Open Simulation Stage"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/30/Niagara-Boid/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+    <div>
+      
+    </div>
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -272,7 +358,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-30 17:07:38" itemprop="dateModified" datetime="2021-08-30T17:07:38+08:00">2021-08-30</time>
+                <time title="修改时间：2021-10-08 15:22:56" itemprop="dateModified" datetime="2021-10-08T15:22:56+08:00">2021-10-08</time>
               </span>
 
           
@@ -512,7 +598,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-30 17:08:26" itemprop="dateModified" datetime="2021-08-30T17:08:26+08:00">2021-08-30</time>
+                <time title="修改时间：2021-09-01 11:17:52" itemprop="dateModified" datetime="2021-09-01T11:17:52+08:00">2021-09-01</time>
               </span>
 
           
@@ -734,7 +820,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
